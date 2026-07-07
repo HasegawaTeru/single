@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include <conio.h>
+#include <conio.h>	// _getch() を使うために必要
 
 class GameManager {
 private:
@@ -19,6 +19,8 @@ public:
 	};
 
 	Scene GameScene = Title;
+	
+	int random = 0;
 
 	/// <summary>
 	/// 別のオブジェクトのコピーを禁止するためのコピーコンストラクタ
@@ -45,7 +47,7 @@ public:
 		case Title:
 			std::cout << "Title Scene" << std::endl;
 			std::cout << "何かキーを押してください。" << std::endl;
-
+			//　何らかの入力を受け取る
 			(void)_getch();
 			GameScene = Game;
 
@@ -58,7 +60,16 @@ public:
 			std::cout << "何かキーを押してください。" << std::endl;
 
 			(void)_getch();
-			GameScene = GameClear;
+			//　ゲームオーバーか、ゲームクリアかをランダムに決定する
+			random = rand() % 2;
+			if (random == 0)
+			{
+				GameScene = GameOver;
+			}
+			else if (random == 1)
+			{
+				GameScene = GameClear;
+			}
 
 			return StartGame();
 
@@ -66,6 +77,13 @@ public:
 
 		case GameOver:
 			std::cout << "GameOver Scene" << std::endl;
+			std::cout << "何かキーを押してください。" << std::endl;
+
+			(void)_getch();
+			GameScene = Title;
+
+			return StartGame();
+
 			break;
 
 		case GameClear:
@@ -79,8 +97,6 @@ public:
 
 			break;
 		}
-
-
 	}
 };
 
