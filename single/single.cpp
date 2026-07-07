@@ -7,7 +7,17 @@ private:
 	/// </summary>
 	GameManager() {}
 
+	enum Scene
+	{
+		Title,
+		Game,
+		GameOver,
+		GameClear
+	};
+
 public:
+
+	Scene GameScene = Title;
 
 	/// <summary>
 	/// 別のオブジェクトのコピーを禁止するためのコピーコンストラクタ
@@ -29,11 +39,28 @@ public:
 
 	void StartGame()
 	{
-		std::cout << "Hello World!\n";
+		switch (GameScene)
+		{
+		case Title:
+			std::cout << "Title Scene" << std::endl;
+			break;
+
+		case Game:
+			std::cout << "Game Scene" << std::endl;
+			break;
+
+		case GameOver:
+			std::cout << "GameOver Scene" << std::endl;
+			break;
+
+		case GameClear:
+			std::cout << "GameClear Scene" << std::endl;
+			break;
+		}
 	}
 };
 
-int main() {
-	//　使用例
+int main() 
+{
 	GameManager::Instance().StartGame();
 }
