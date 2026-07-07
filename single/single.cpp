@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <conio.h>
 
 class GameManager {
 private:
@@ -7,6 +8,8 @@ private:
 	/// </summary>
 	GameManager() {}
 
+public:
+
 	enum Scene
 	{
 		Title,
@@ -14,8 +17,6 @@ private:
 		GameOver,
 		GameClear
 	};
-
-public:
 
 	Scene GameScene = Title;
 
@@ -43,10 +44,24 @@ public:
 		{
 		case Title:
 			std::cout << "Title Scene" << std::endl;
+			std::cout << "何かキーを押してください。" << std::endl;
+
+			(void)_getch();
+			GameScene = Game;
+
+			return StartGame();
+			
 			break;
 
 		case Game:
 			std::cout << "Game Scene" << std::endl;
+			std::cout << "何かキーを押してください。" << std::endl;
+
+			(void)_getch();
+			GameScene = GameClear;
+
+			return StartGame();
+
 			break;
 
 		case GameOver:
@@ -55,8 +70,17 @@ public:
 
 		case GameClear:
 			std::cout << "GameClear Scene" << std::endl;
+			std::cout << "何かキーを押してください。" << std::endl;
+
+			(void)_getch();
+			GameScene = Title;
+
+			return StartGame();
+
 			break;
 		}
+
+
 	}
 };
 
