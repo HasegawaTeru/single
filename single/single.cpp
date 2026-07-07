@@ -2,22 +2,34 @@
 
 class GameManager {
 private:
-
+	/// <summary>
+	/// オブジェクトを外部から生成するのを防ぐための private コンストラクタ
+	/// </summary>
 	GameManager() {}
 
 public:
 
-	//　コピー・代入の禁止
+	/// <summary>
+	/// 別のオブジェクトのコピーを禁止するためのコピーコンストラクタ
+	/// </summary>
 	GameManager(const GameManager&) = delete;
-	GameManager& operator = (const GameManager&) = delete;
+	/// <summary>
+	/// 別のオブジェクトのコピーを禁止するためのコピーコンストラクタ
+	/// </summary>
+	GameManager& operator=(const GameManager&) = delete;
 
+	/// <summary>
+	/// スレッドセーフな、GameManager の唯一のオブジェクトを返すことができる
+	/// </summary>
+	/// <returns></returns>
 	static GameManager& Instance() {
 		static GameManager instance;
 		return instance;
 	}
 
-	void StartGame() {
-		// ゲーム開始処理
+	void StartGame()
+	{
+		std::cout << "Hello World!\n";
 	}
 };
 
